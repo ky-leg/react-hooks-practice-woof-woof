@@ -2,7 +2,7 @@ import React from "react";
 
 function DisplayPup({pup, onGoodClick}){
 
-    console.log(pup)
+    // console.log(pup)
 
     if (!pup.name){
         return (

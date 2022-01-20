@@ -21,19 +21,23 @@ function App() {
 
   function onGoodClick(pup){
     const newIsGood = !pup.isGoodDog
-    console.log('dog b4', newIsGood)
+    const newPups = 
+      pups.filter(puppy=> puppy.id!==pup.id)
+      
+    // console.log(newPups)
+    setDisplayPup({...pup, isGoodDog: newIsGood})
     fetch(`http://localhost:3001/pups/${pup.id}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "applicaiton/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         isGoodDog: newIsGood,
       }),
     })
     .then(r => r.json())
-    .then(r => console.log(r))
-    // console.log(changePup)
+    .then(r => setPups  ([...newPups, r]))
+    
   }
 
   function goodPupToggle(){
